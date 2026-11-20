@@ -836,133 +836,123 @@ html, body {
   }
 }
 /* ============================================================================
-   Правки адаптива для узких экранов, планшетов и touch-устройств (ЙОООГА254)
+   ФИКС МОБИЛЬНОЙ ВЕРСТКИ (<= 680px)
    ========================================================================== */
-
-/* Планшеты (768px–1024px): сбалансированная сетка карточек */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .features-inner.no-media .features-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .prices-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
-
-  .prices-grid .price-card:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    max-width: 520px;
-    width: 100%;
-    justify-self: center;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .features-inner.no-media .features-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .prices-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .prices-grid .price-card:last-child:nth-child(odd) {
-    grid-column: auto;
-    max-width: none;
-    justify-self: stretch;
-  }
-}
-
-/* Смартфоны и узкие экраны (<= 680px) */
 @media (max-width: 680px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: clip !important;
+  }
+
+  .container,
+  .header-inner,
+  .hero,
+  .hero-inner,
+  .hero-left,
+  .hero-right,
+  .hero-cta-row,
+  section {
+    max-width: 100% !important;
+    min-width: 0;
+  }
+
+  /* Шапка: логотип, кнопка звонка и бургер без обрезки по правому краю */
+  .header-inner {
+    gap: 8px;
+  }
+
+  .logo-img {
+    height: 38px;
+    max-width: 132px;
+    object-fit: contain;
+  }
+
+  .header-phone-mobile {
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+  }
+
+  .burger {
+    margin-right: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Заголовок и подзаголовок по ширине экрана */
+  .hero {
+    padding: 20px 0 44px;
+  }
+
+  .hero-left h1 {
+    font-size: clamp(1.85rem, 8vw, 2.4rem);
+    line-height: 1.12;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+    font-size: 0.96rem;
+    margin: 14px 0 20px;
+    overflow-wrap: break-word;
+  }
+
+  /* Кнопки на всю ширину блока */
+  .hero-cta-row {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .hero-cta-row .btn,
+  .hero-cta-row .btn-lg,
+  .hero-cta-row .btn-text {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+  }
+
+  /* Чипсы («Малая Ямская...», «50–90 минут»): аккуратный скролл внутри контейнера */
   .hero-info {
-    position: relative;
-    padding-right: 28px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    width: 100%;
+    margin: 16px 0 0;
+    padding: 2px 12px 6px 0;
+    gap: 8px;
   }
 
   .hero-info span {
+    flex: 0 0 auto;
+    min-height: 40px;
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
-    padding: 8px 14px;
+    font-size: 0.82rem;
+    padding: 6px 12px;
   }
 
-  .hero-info::after {
-    content: "";
-    position: sticky;
-    right: 0;
-    top: 0;
-    width: 28px;
-    min-width: 28px;
-    align-self: stretch;
-    background: linear-gradient(90deg, rgba(243, 239, 230, 0), var(--bg));
-    pointer-events: none;
+  /* Фото в арке не вылезает за экран */
+  .hero-right,
+  .hero-img {
+    width: 100%;
+    max-width: 100%;
   }
 
-  .about-hero {
-    padding: 28px 0 58px;
+  .hero-img {
+    aspect-ratio: 4 / 3.4;
+    border-radius: 140px 140px 18px 18px;
   }
 
-  .about-hero-text {
-    padding: 0 18px 18px;
-  }
-
-  .about-dots {
-    bottom: 8px;
-    gap: 2px;
-  }
-
-  .about-dot {
-    position: relative;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    background: transparent;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transform: none;
-  }
-
-  .about-dot::after {
-    content: "";
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.45);
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  .about-dot.active {
-    background: transparent;
-    transform: none;
-  }
-
-  .about-dot.active::after {
-    background: #fff;
-    transform: scale(1.25);
-  }
-}
-
-/* Сверхмалые экраны (<= 380px): не сжимаем время в слотах расписания */
-@media (max-width: 380px) {
-  .schedule-slot {
-    grid-template-columns: 74px minmax(0, 1fr);
-    column-gap: 10px;
-    padding: 12px;
-  }
-
-  .schedule-time {
-    font-size: 0.94rem;
-    padding: 6px 6px;
-    white-space: nowrap;
-  }
-
-  .schedule-name,
-  .schedule-trainer {
-    overflow-wrap: anywhere;
+  /* Нижняя панель кнопок */
+  .mobile-sticky-bar {
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 }
