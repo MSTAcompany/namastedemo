@@ -38,7 +38,7 @@ const CONFIG = {
     secondaryHref: "#schedule",
     image: "assets/eaeRbjEAH8vImSGndPBDRtd_2tlcLml5IYCUfkGLALoLmSU8b6EUN628sKM6BpQOJValA96MlVfvTSeSMeF9ibVI.jpg",
     info: [
-      { icon: "📍", text: "Советская, 91" },
+      { icon: "📍", text: "Малая Ямская, 65/4" },
       { icon: "🕒", text: "50–90 минут" },
       { icon: "★", text: "пробное 1400 ₽" },
     ],
