@@ -835,3 +835,134 @@ html, body {
     transition-duration: 0.01ms !important;
   }
 }
+/* ============================================================================
+   Правки адаптива для узких экранов, планшетов и touch-устройств (ЙОООГА254)
+   ========================================================================== */
+
+/* Планшеты (768px–1024px): сбалансированная сетка карточек */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .features-inner.no-media .features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .prices-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .prices-grid .price-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 520px;
+    width: 100%;
+    justify-self: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .features-inner.no-media .features-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .prices-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .prices-grid .price-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: none;
+    justify-self: stretch;
+  }
+}
+
+/* Смартфоны и узкие экраны (<= 680px) */
+@media (max-width: 680px) {
+  .hero-info {
+    position: relative;
+    padding-right: 28px;
+  }
+
+  .hero-info span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 14px;
+  }
+
+  .hero-info::after {
+    content: "";
+    position: sticky;
+    right: 0;
+    top: 0;
+    width: 28px;
+    min-width: 28px;
+    align-self: stretch;
+    background: linear-gradient(90deg, rgba(243, 239, 230, 0), var(--bg));
+    pointer-events: none;
+  }
+
+  .about-hero {
+    padding: 28px 0 58px;
+  }
+
+  .about-hero-text {
+    padding: 0 18px 18px;
+  }
+
+  .about-dots {
+    bottom: 8px;
+    gap: 2px;
+  }
+
+  .about-dot {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+  }
+
+  .about-dot::after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .about-dot.active {
+    background: transparent;
+    transform: none;
+  }
+
+  .about-dot.active::after {
+    background: #fff;
+    transform: scale(1.25);
+  }
+}
+
+/* Сверхмалые экраны (<= 380px): не сжимаем время в слотах расписания */
+@media (max-width: 380px) {
+  .schedule-slot {
+    grid-template-columns: 74px minmax(0, 1fr);
+    column-gap: 10px;
+    padding: 12px;
+  }
+
+  .schedule-time {
+    font-size: 0.94rem;
+    padding: 6px 6px;
+    white-space: nowrap;
+  }
+
+  .schedule-name,
+  .schedule-trainer {
+    overflow-wrap: anywhere;
+  }
+}
